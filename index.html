@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Бизнесийн Автоматжуулалт — Chinbolor Consulting</title>
+  <meta name="description" content="AI технологиор бизнесийнхээ үйл ажиллагааг автоматжуулж, хоногт 3 цагийг хэмнэ. Дэлгэрэнгүй гарын авлага татаж ав.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #0a0a0a;
+      --dark:       #111111;
+      --card:       #181818;
+      --border:     #2a2a2a;
+      --white:      #ffffff;
+      --gray:       #888888;
+      --light-gray: #cccccc;
+      --gold:       #d4a843;
+      --gold-light: #f0c96a;
+      --gold-glow:  rgba(212,168,67,0.18);
+      --blue:       #1F5FAD;
+      --blue-light: #4A90D9;
+      --green:      #22c55e;
+      --radius:     12px;
+      --radius-lg:  20px;
+      --shadow:     0 4px 40px rgba(0,0,0,0.6);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      background: var(--white);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; color: var(--black);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text {
+      font-size: 15px; font-weight: 600;
+      color: var(--white); line-height: 1.2;
+    }
+
+    .nav-logo-sub {
+      font-size: 11px; font-weight: 400;
+      color: var(--gray);
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      padding: 140px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(212,168,67,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,168,67,0.1);
+      border: 1px solid rgba(212,168,67,0.3);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(1.5); }
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--light-gray);
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+      border: 2px solid var(--gold);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212,168,67,0.35);
+    }
+
+    .btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-note svg { width: 14px; height: 14px; color: var(--green); }
+
+    /* Product Mockup */
+    .hero-visual {
+      position: relative;
+    }
+
+    .mockup-outer {
+      position: relative;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--gold), rgba(212,168,67,0.2), transparent 60%);
+      border-radius: 20px;
+    }
+
+    .mockup-inner {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .mockup-header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f1923 100%);
+      padding: 32px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-header::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(212,168,67,0.15) 0%, transparent 70%);
+    }
+
+    .mockup-tag {
+      display: inline-block;
+      background: var(--gold-glow);
+      border: 1px solid rgba(212,168,67,0.4);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .mockup-title {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .mockup-sub {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .mockup-body {
+      padding: 24px 32px 32px;
+    }
+
+    .mockup-chapters {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .chapter-item:hover { border-color: rgba(212,168,67,0.3); }
+
+    .chapter-num {
+      width: 28px; height: 28px;
+      background: var(--gold-glow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .chapter-text { font-size: 13px; font-weight: 500; }
+    .chapter-sub  { font-size: 11px; color: var(--gray); margin-top: 1px; }
+
+    .mockup-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(34,197,94,0.05));
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 10px;
+    }
+
+    .mockup-badge-left { font-size: 13px; font-weight: 600; color: var(--green); }
+    .mockup-badge-right { font-size: 12px; color: var(--gray); }
+
+    /* Floating tags */
+    .float-tag {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex; align-items: center; gap: 7px;
+      animation: float 4s ease-in-out infinite;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+
+    .float-tag-1 { top: -20px; right: -20px; animation-delay: 0s; }
+    .float-tag-2 { bottom: 20px; left: -30px; animation-delay: 2s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .float-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-gold  { background: var(--gold); }
+    .dot-green { background: var(--green); }
+
+    /* ══════════════════════════════════════════
+       SOCIAL PROOF BAR
+    ══════════════════════════════════════════ */
+    .proof-bar {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--dark);
+    }
+
+    .proof-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    .proof-icon {
+      font-size: 18px;
+    }
+
+    /* ══════════════════════════════════════════
+       PROBLEM → SOLUTION
+    ══════════════════════════════════════════ */
+    .section { padding: 90px 0; }
+    .section-sm { padding: 60px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--light-gray);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .problem-card {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      position: relative;
+    }
+
+    .problem-card.highlight {
+      border-color: rgba(212,168,67,0.35);
+      background: linear-gradient(135deg, rgba(212,168,67,0.06) 0%, var(--card) 100%);
+    }
+
+    .problem-emoji { font-size: 28px; margin-bottom: 16px; }
+    .problem-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .problem-text  { font-size: 14px; color: var(--light-gray); line-height: 1.6; }
+
+    .problem-card.highlight .problem-title { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       BENEFITS / WHAT'S INSIDE
+    ══════════════════════════════════════════ */
+    .benefits-bg {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .benefit-card {
+      padding: 32px 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(212,168,67,0.4);
+      transform: translateY(-4px);
+    }
+
+    .benefit-icon {
+      width: 52px; height: 52px;
+      background: var(--gold-glow);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .benefit-text  { font-size: 14px; color: var(--light-gray); line-height: 1.65; }
+
+    .benefit-list {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .benefit-list li {
+      font-size: 13px;
+      color: var(--light-gray);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .benefit-list li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ══════════════════════════════════════════
+       CURRICULUM / WHAT'S INSIDE
+    ══════════════════════════════════════════ */
+    .curriculum {
+      margin-top: 52px;
+    }
+
+    .curriculum-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .curriculum-module {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.25s;
+    }
+
+    .curriculum-module:hover { border-color: rgba(212,168,67,0.4); }
+
+    .module-num {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .module-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .module-text  { font-size: 13px; color: var(--gray); line-height: 1.55; }
+
+    .module-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+    }
+
+    .module-tag {
+      font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--light-gray);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ══════════════════════════════════════════
+       RESULTS COUNTER
+    ══════════════════════════════════════════ */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .result-card {
+      text-align: center;
+      padding: 36px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .result-num {
+      font-size: 42px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .result-label { font-size: 14px; color: var(--light-gray); line-height: 1.4; }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════ */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .testimonial-card {
+      padding: 32px 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px; right: 24px;
+      font-size: 60px;
+      line-height: 1;
+      color: rgba(212,168,67,0.15);
+      font-family: Georgia, serif;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--light-gray);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: var(--black);
+    }
+
+    .author-name  { font-size: 14px; font-weight: 700; }
+    .author-title { font-size: 12px; color: var(--gray); }
+
+    /* ══════════════════════════════════════════
+       PRICING / CTA
+    ══════════════════════════════════════════ */
+    .pricing-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto;
+      margin-top: 52px;
+      background: var(--card);
+      border: 2px solid rgba(212,168,67,0.4);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(212,168,67,0.1);
+    }
+
+    .pricing-header {
+      padding: 36px 40px 28px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      background: linear-gradient(135deg, rgba(212,168,67,0.08) 0%, transparent 100%);
+    }
+
+    .pricing-label {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-product { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .pricing-desc    { font-size: 14px; color: var(--gray); }
+
+    .pricing-amount {
+      padding: 28px 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-original {
+      font-size: 16px;
+      color: var(--gray);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .price-current {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    .price-savings {
+      display: inline-block;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.3);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-top: 10px;
+    }
+
+    .pricing-includes {
+      padding: 28px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .includes-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .include-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .include-item:last-child { border-bottom: none; }
+
+    .include-check {
+      width: 20px; height: 20px;
+      background: rgba(34,197,94,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--green);
+      font-size: 11px;
+    }
+
+    .pricing-cta {
+      padding: 32px 40px 36px;
+      text-align: center;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      font-weight: 800;
+      font-size: 18px;
+      padding: 18px 32px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      letter-spacing: -0.3px;
+    }
+
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(212,168,67,0.4);
+    }
+
+    .pricing-guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .pricing-trust {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* ══════════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════════ */
+    .faq-list {
+      max-width: 720px;
+      margin: 52px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .faq-arrow {
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.25s, background 0.2s;
+      font-size: 12px;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      background: var(--gold-glow);
+      color: var(--gold);
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--light-gray);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* ══════════════════════════════════════════
+       FINAL CTA
+    ══════════════════════════════════════════ */
+    .final-cta {
+      padding: 90px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(212,168,67,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .final-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .final-sub {
+      font-size: 17px;
+      color: var(--light-gray);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .final-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      background: var(--dark);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand { font-size: 14px; font-weight: 600; }
+    .footer-sub   { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .footer-right { font-size: 12px; color: var(--gray); text-align: right; }
+
+    /* ══════════════════════════════════════════
+       COUNTDOWN (urgency)
+    ══════════════════════════════════════════ */
+    .countdown-bar {
+      background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.08));
+      border-top: 1px solid rgba(212,168,67,0.2);
+      border-bottom: 1px solid rgba(212,168,67,0.2);
+      padding: 12px 0;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .countdown-bar span { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       SCROLL INDICATOR
+    ══════════════════════════════════════════ */
+    .scroll-down {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 52px;
+      color: var(--gray);
+      font-size: 12px;
+    }
+
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scroll-anim 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-anim {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50%       { opacity: 0.3; transform: scaleY(0.7); }
+    }
+
+    /* ══════════════════════════════════════════
+       STICKY BOTTOM BAR (mobile)
+    ══════════════════════════════════════════ */
+    .sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(17,17,17,0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 14px 20px;
+      z-index: 99;
+    }
+
+    .sticky-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .sticky-price { font-size: 22px; font-weight: 900; color: var(--gold); }
+    .sticky-label { font-size: 12px; color: var(--gray); }
+
+    .sticky-btn {
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero-layout        { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual        { order: -1; }
+      .problem-grid       { grid-template-columns: 1fr; }
+      .benefits-grid      { grid-template-columns: 1fr; }
+      .curriculum-row     { grid-template-columns: 1fr; }
+      .results-grid       { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid  { grid-template-columns: 1fr; }
+      .proof-bar-inner    { gap: 20px; }
+      .pricing-card       { margin: 52px 0 0; }
+      .float-tag-1, .float-tag-2 { display: none; }
+      .sticky-bar         { display: block; }
+      body { padding-bottom: 80px; }
+    }
+
+    @media (max-width: 580px) {
+      .hero-stats         { gap: 20px; flex-wrap: wrap; }
+      .results-grid       { grid-template-columns: 1fr 1fr; }
+      .pricing-header,
+      .pricing-amount,
+      .pricing-includes,
+      .pricing-cta        { padding-left: 24px; padding-right: 24px; }
+      .price-current      { font-size: 44px; }
+      .hero-cta-group     { flex-direction: column; align-items: stretch; }
+      .btn-primary        { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ═════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-logo-mark">CH</div>
+        <div>
+          <div class="nav-logo-text">Chinbolor Consulting</div>
+          <div class="nav-logo-sub">Strategy. Growth. Profit.</div>
+        </div>
+      </div>
+      <a href="#pricing" class="nav-cta">↓ Одоо авах — ₮39,999</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ URGENCY BAR ══════════════════════════════════════════════════ -->
+<div class="countdown-bar">
+  🔥 Онцгой эхлэлийн үнэ — Зөвхөн <span id="countdown">47</span> хувь үлдлээ &nbsp;|&nbsp; Ердийн үнэ: ₮149,000
+</div>
+
+<!-- ══ HERO ═════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-layout">
+
+      <!-- Left: Copy -->
+      <div>
+        <div class="hero-badge">Мэргэжилтний сургалтын материал</div>
+
+        <h1 class="hero-title">
+          AI-ийн хүчээр<br>
+          бизнесээ <span class="accent">автоматжуулж</span><br>
+          амьдралаа<br>
+          эргүүл
+        </h1>
+
+        <p class="hero-subtitle">
+          Хоногт 3+ цагийг хэмнэж, борлуулалтаа 2 дахин өсгөх
+          практик аргачлал. Код мэдэхгүй ч хийж чадна.
+        </p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">24+</div>
+            <div class="hero-stat-label">AI хэрэгсэл</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">5</div>
+            <div class="hero-stat-label">Бүлэг</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4 долоо хоног</div>
+            <div class="hero-stat-label">Хэрэгжүүлэх хуваарь</div>
+          </div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#pricing" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+            Одоо худалдаж авах — ₮39,999
+          </a>
+        </div>
+
+        <div class="hero-note" style="margin-top:16px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Нэн даруй татаж авна · Найдвартай qPay төлбөр
+        </div>
+      </div>
+
+      <!-- Right: Mockup -->
+      <div class="hero-visual">
+        <div class="float-tag float-tag-1">
+          <span class="float-dot dot-gold"></span>
+          Шинэ загвар — 2026
+        </div>
+        <div class="float-tag float-tag-2">
+          <span class="float-dot dot-green"></span>
+          ✓ Баталгаат татаж авалт
+        </div>
+
+        <div class="mockup-outer">
+          <div class="mockup-inner">
+            <div class="mockup-header">
+              <div class="mockup-tag">Мэргэжлийн Гарын Авлага · PDF</div>
+              <div class="mockup-title">AI Технологиор Бизнесийн<br>Үйлдлийг Автоматжуулах</div>
+              <div class="mockup-sub">Chinbolor Consulting · 2026</div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-chapters">
+                <div class="chapter-item">
+                  <div class="chapter-num">1</div>
+                  <div>
+                    <div class="chapter-text">Сошиал Контент Автоматжуулалт</div>
+                    <div class="chapter-sub">Видео, зураг, текст · Scheduling</div>
+                  </div>
+                </div>
+                <div class="chapter-item">
+                  <div class="chapter-num">2</div>
+                  <div>
+                    <div class="chapter-text">Харилцагчийн Үйлчилгээ 24/7</div>
+                    <div class="chapter-sub">Чатбот · Meta Suite · Tidio</div>
+                  </div>
+                </div>
+                <div class="chapter-item">
+                  <div class="chapter-num">3</div>
+                  <div>
+                    <div class="chapter-text">Борлуулалт & Маркетинг</div>
+                    <div class="chapter-sub">AI Targeting · CRM · Analytics</div>
+                  </div>
+                </div>
+                <div class="chapter-item">
+                  <div class="chapter-num">4</div>
+                  <div>
+                    <div class="chapter-text">24 Шилдэг AI Хэрэгсэл</div>
+                    <div class="chapter-sub">Үнэгүй & Төлбөртэй харьцуулалт</div>
+                  </div>
+                </div>
+                <div class="chapter-item">
+                  <div class="chapter-num">5</div>
+                  <div>
+                    <div class="chapter-text">4 Долоо Хоногийн Хэрэгжүүлэлт</div>
+                    <div class="chapter-sub">Алхам алхмаар · KPI хяналт</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mockup-badge">
+                <div class="mockup-badge-left">✓ Шууд татаж авна</div>
+                <div class="mockup-badge-right">PDF · 80+ хуудас</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- scroll hint -->
+    <div class="scroll-down">
+      <div class="scroll-line"></div>
+      Дэлгэрэнгүй харах
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROOF BAR ════════════════════════════════════════════════════ -->
+<div class="proof-bar">
+  <div class="container">
+    <div class="proof-bar-inner">
+      <div class="proof-item">
+        <span class="proof-icon">🏆</span>
+        Монголын бизнесэд зориулсан
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">⚡</span>
+        Код мэдэхгүй ч хийж чадна
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">📊</span>
+        Бодит тоо баримтад суурилсан
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">🔐</span>
+        qPay-ийн найдвартай төлбөр
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM → SOLUTION ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Танд энэ мэдрэмж танил юу?</div>
+    <h2 class="section-title">Бизнесийн давтагдах<br>ажил тань цагийг идэж байна уу?</h2>
+    <p class="section-sub">Мянга мянган бизнес эрхлэгчид яг эдгээр асуудлуудтай нүүр тулдаг.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-emoji">😩</div>
+        <div class="problem-title">Пост бичих цаг дуусдаг</div>
+        <div class="problem-text">Долоо хоног бүр 5-10 пост бичих нь бизнесийн гол ажлаас анхаарлыг сарниулна. Цагийг идэж, үр дүн нь тэр болгон харагддаггүй.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-emoji">📱</div>
+        <div class="problem-title">Харилцагчийн мессеж хариулахгүй хоцордог</div>
+        <div class="problem-text">Унтаж байх үед, ажил завтай байх үед мессеж ирвэл хариултгүй үлдэж борлуулалт алдагдана.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-emoji">📉</div>
+        <div class="problem-title">Реклам зарцуулалт үр дүнгүй</div>
+        <div class="problem-text">Зарчилгаанд мөнгө зарцуулж байгаа ч зөв хүмүүст хүрч байгаа эсэхийг мэдэхгүй. Өгөөж тооцоолоход хэцүү.</div>
+      </div>
+      <div class="problem-card highlight">
+        <div class="problem-emoji">✨</div>
+        <div class="problem-title">Шийдэл бэлэн болсон</div>
+        <div class="problem-text">AI технологи нь эдгээр давтагдах ажлуудыг таны оронд хийдэг. Зөвхөн нэг удаа тохируулж, системд ажиллуулна.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENEFITS ═════════════════════════════════════════════════════ -->
+<section class="section benefits-bg">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Та юу авах вэ?</div>
+      <h2 class="section-title">Энэ гарын авлагаас<br>юу сурах вэ?</h2>
+      <p class="section-sub" style="margin:0 auto;">Практик алхмууд, бодит жишээ, шууд хэрэгжүүлж болох заавар.</p>
+    </div>
+
+    <div class="benefits-grid">
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🎬</div>
+        <div class="benefit-title">Контент үйлдвэрлэл автоматаар</div>
+        <div class="benefit-text">Сарын 30 пост, видео, дизайныг AI-р бэлтгэж, Buffer дээр хуваарьтай нийтлүүл.</div>
+        <ul class="benefit-list">
+          <li>ChatGPT промпт загварууд</li>
+          <li>HeyGen видео аватаар</li>
+          <li>Canva AI брэнд автоматжуулалт</li>
+          <li>Buffer/Later scheduling систем</li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🤖</div>
+        <div class="benefit-title">24/7 харилцагчийн үйлчилгээ</div>
+        <div class="benefit-text">ManyChat, Tidio ашиглан хэрэглэгчдийн асуултад таны оронд хариул. Унтаж байсан ч борлуулалт болно.</div>
+        <ul class="benefit-list">
+          <li>Instagram comment automation</li>
+          <li>Meta Business Suite тохируулга</li>
+          <li>Shopify чатбот интеграц</li>
+          <li>Email дараалал автоматжуулалт</li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">📈</div>
+        <div class="benefit-title">Борлуулалтын AI шийдвэр</div>
+        <div class="benefit-text">Meta Advantage+ targeting, Google Smart Bidding ашиглан зарчилгааны өгөөжийг нэмэгдүүл.</div>
+        <ul class="benefit-list">
+          <li>Lookalike Audience үүсгэх</li>
+          <li>Looker Studio дашборд</li>
+          <li>HubSpot CRM automation</li>
+          <li>Predictive analytics</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CURRICULUM ═══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Агуулга</div>
+    <h2 class="section-title">5 бүлэг — бүрэн хамарсан</h2>
+    <p class="section-sub">Эхлэгчээс мэргэжилтэн хүртэл — алхам алхмаар заасан практик гарын авлага.</p>
+
+    <div class="curriculum">
+      <div class="curriculum-row">
+
+        <div class="curriculum-module">
+          <div class="module-num">1</div>
+          <div>
+            <div class="module-title">Сошиал Контент Автоматжуулалт</div>
+            <div class="module-text">Видео, зурагт контент, текст бичих, scheduling — бүгдийг AI-р хийх практик аргачлал.</div>
+            <div class="module-tags">
+              <span class="module-tag">ChatGPT</span>
+              <span class="module-tag">HeyGen</span>
+              <span class="module-tag">Canva AI</span>
+              <span class="module-tag">Buffer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-module">
+          <div class="module-num">2</div>
+          <div>
+            <div class="module-title">Харилцагчийн Үйлчилгээ 24/7</div>
+            <div class="module-text">Meta Suite, ManyChat, Tidio ашиглан чатбот тохируулах дэлгэрэнгүй заавар.</div>
+            <div class="module-tags">
+              <span class="module-tag">ManyChat</span>
+              <span class="module-tag">Tidio</span>
+              <span class="module-tag">Shopify</span>
+              <span class="module-tag">Mailchimp</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-module">
+          <div class="module-num">3</div>
+          <div>
+            <div class="module-title">Борлуулалт & Маркетинг</div>
+            <div class="module-text">AI targeting, датаны шинжилгээ, CRM automation — борлуулалтыг өсгөх аргачлал.</div>
+            <div class="module-tags">
+              <span class="module-tag">Meta Ads</span>
+              <span class="module-tag">Google Ads</span>
+              <span class="module-tag">HubSpot</span>
+              <span class="module-tag">Klaviyo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-module">
+          <div class="module-num">4</div>
+          <div>
+            <div class="module-title">24 Шилдэг AI Хэрэгсэл</div>
+            <div class="module-text">Үнэгүй болон төлбөртэй программуудын дэлгэрэнгүй харьцуулалт, хэнд тохиромжтой заасан хүснэгт.</div>
+            <div class="module-tags">
+              <span class="module-tag">Zapier</span>
+              <span class="module-tag">Make.com</span>
+              <span class="module-tag">Jasper</span>
+              <span class="module-tag">Semrush</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-module" style="grid-column: 1 / -1;">
+          <div class="module-num">5</div>
+          <div>
+            <div class="module-title">4 Долоо Хоногийн Хэрэгжүүлэлтийн Зам</div>
+            <div class="module-text">Хаанаас эхлэх, ямар дарааллаар хийх, хэрхэн хэмжих — бодит хуваарь болон KPI хяналтын хүснэгт.</div>
+            <div class="module-tags">
+              <span class="module-tag">Roadmap хүснэгт</span>
+              <span class="module-tag">KPI tracker</span>
+              <span class="module-tag">Нэр томьёоны тайлбар</span>
+              <span class="module-tag">Практик даалгаварууд</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESULTS ══════════════════════════════════════════════════════ -->
+<section class="section benefits-bg">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Судалгааны үр дүн</div>
+      <h2 class="section-title">Тоо баримт ярьж байна</h2>
+    </div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-num">40%</div>
+        <div class="result-label">Ажилтны бүтээмж дунджаар нэмэгдсэн</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">3ц+</div>
+        <div class="result-label">Хоногт хэмнэгдэх цаг (дунджаар)</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">23%</div>
+        <div class="result-label">Борлуулалт нэмэгдэх (чатбот ашигласан дэлгүүрт)</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">30%</div>
+        <div class="result-label">Маркетингийн зардал буурсан</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ═════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Үнэлгээ</div>
+      <h2 class="section-title">Хэрэглэгчдийн сэтгэгдэл</h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Buffer болон Canva-г хэрхэн холбож ажиллуулахыг заасан хэсэг маш ашигтай байлаа. Долоо хоногт 8 цаг хэмнэж эхэллээ."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Б</div>
+          <div>
+            <div class="author-name">Батбаяр Г.</div>
+            <div class="author-title">Онлайн дэлгүүр эрхлэгч</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"ManyChat-ийн алхамуудыг нарийн заасан байсан. Instagram-д keyword trigger тохируулсаны дараа борлуулалт 30% өслөө."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Н</div>
+          <div>
+            <div class="author-name">Нандинцэцэг Б.</div>
+            <div class="author-title">Гоо сайхны бизнес</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Код мэдэхгүй би ч Meta Ads-ийн Advantage+ тохируулж чадлаа. Зарчилгааны зардлаа 25% бууруулж чадсан."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">Э</div>
+          <div>
+            <div class="author-name">Энхжаргал Д.</div>
+            <div class="author-title">Маркетинг менежер</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══════════════════════════════════════════════════════ -->
+<section id="pricing" class="section pricing-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Үнийн мэдээлэл</div>
+      <h2 class="section-title">Нэг удаагийн хөрөнгө оруулалт —<br>насан туршийн хэрэгсэл</h2>
+    </div>
+
+    <div class="pricing-card">
+
+      <div class="pricing-header">
+        <div class="pricing-label">✦ Онцгой Эхлэлийн Үнэ</div>
+        <div class="pricing-product">AI Технологиор Бизнесийн Үйлдлийг Автоматжуулах</div>
+        <div class="pricing-desc">Дэлгэрэнгүй Мэргэжлийн Сургалтын Материал · 2026 он</div>
+      </div>
+
+      <div class="pricing-amount">
+        <div class="price-original">Ердийн үнэ: ₮149,000</div>
+        <div class="price-current">₮39,999</div>
+        <div class="price-note">Нэг удаагийн төлбөр · Хугацаагүй хандалт</div>
+        <div class="price-savings">🎉 ₮70,000 хэмнэж байна (-47%)</div>
+      </div>
+
+      <div class="pricing-includes">
+        <div class="includes-title">Юу багтсан бэ?</div>
+
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>80+ хуудасны PDF гарын авлага</strong> — бүрэн агуулга</span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>5 бүлэг</strong> — Контент · Чатбот · Борлуулалт · Хэрэгслүүд · Roadmap</span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>24 AI хэрэгслийн харьцуулалт</strong> хүснэгт (үнэ, давуу тал)</span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>4 долоо хоногийн хэрэгжүүлэлтийн хуваарь</strong></span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>KPI хяналтын хүснэгт</strong> + Практик даалгаварууд</span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>ChatGPT промпт загварууд</strong> — постод, чатботод, маркетинг</span>
+        </div>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span><strong>Шинэчлэлт үнэгүй</strong> — материал шинэчлэгдэхэд автоматаар авна</span>
+        </div>
+      </div>
+
+      <div class="pricing-cta">
+        <!-- qPay товч — энд таны qPay checkout URL-г холбоно -->
+        <a href="YOUR_QPAY_CHECKOUT_URL" class="btn-buy" id="buyBtn">
+          ⚡ Одоо худалдаж авах — ₮39,999
+        </a>
+
+        <div class="pricing-guarantee">
+          🔒 qPay-ийн найдвартай, шифрлэгдсэн төлбөр
+        </div>
+
+        <div class="pricing-trust">
+          <div class="trust-item">📥 Нэн даруй татна</div>
+          <div class="trust-item">🔄 1 удаагийн төлбөр</div>
+          <div class="trust-item">💳 12 банк дэмжинэ</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Нийтлэг асуулт</div>
+      <h2 class="section-title">Асуулт байна уу?</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Худалдан авсны дараа файлыг хэрхэн авах вэ?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          qPay-ээр төлбөр хийсэнийхээ дараа таны email хаягт нэн даруй татаж авах линк илгээгдэнэ. Линк 24 цагийн дотор хүчинтэй. Асуудал гарвал info@chinbolorconsulting.mn-д холбогдоорой.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Техникийн мэдлэггүй байсан ч ойлгоно уу?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          Тийм! Гарын авлагыг хөгжүүлэгч биш, бизнес эрхлэгчдэд зориулж бичсэн. Бүх алхмуудыг дэлгэрэнгүй тайлбарлаж, скриншот, жишээтэйгээр харуулсан. Код бичих шаардлагагүй.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Ямар форматаар өгдөг вэ?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          PDF болон Word (.docx) форматаар хоёуланг нь авна. Компьютер, утас, таблет дээр нээгдэнэ. Хэвлэж ашиглах боломжтой.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Хэдэн дахин татаж авч болох вэ?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          Нэг удаагийн баталгааттай татах линк өгнө. Хэрэв техникийн асуудал гарвал 24 цагийн дотор мэдэгдэхэд шинэ линк илгээнэ.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Ямар бизнест тохиромжтой вэ?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          Онлайн болон офлайн аль ч бизнест тохиромжтой. Онцгойлон: цахим дэлгүүр, гоо сайхан, хоол, хувцас, зөвлөх үйлчилгээ, стартап, маркетинг агентлаг зэрэгт хамгийн их ашигтай.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ═════════════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="final-title">
+      Бизнесийнхээ ирээдүйг<br>
+      <span style="background:linear-gradient(135deg,#d4a843,#f0c96a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">өнөөдөр эхэл</span>
+    </h2>
+    <p class="final-sub">
+      Таны өрсөлдөгчид аль хэдийн AI ашиглаж байна.
+      Хоцрохгүйн тулд одоо эхэл.
+    </p>
+    <a href="#pricing" class="btn-primary" style="margin:0 auto;display:inline-flex;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+      Одоо худалдаж авах — ₮39,999
+    </a>
+    <div class="final-note">Нэн даруй татаж авна · Нэг удаагийн төлбөр · qPay баталгаат</div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Chinbolor Consulting</div>
+        <div class="footer-sub">Strategy. Growth. Profit.</div>
+      </div>
+      <div class="footer-right">
+        <div>© 2026 Chinbolor Consulting. Бүх эрх хуулиар хамгаалагдсан.</div>
+        <div style="margin-top:4px;">Асуулт: ganboldchinbolor1@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ STICKY BAR (mobile) ═══════════════════════════════════════════ -->
+<div class="sticky-bar">
+  <div class="sticky-bar-inner">
+    <div>
+      <div class="sticky-price">₮39,999</div>
+      <div class="sticky-label">Нэн даруй татна</div>
+    </div>
+    <a href="#pricing" class="sticky-btn">Одоо авах ⚡</a>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ══════════════════════════════════════════════════════ -->
+<script>
+  // ── FAQ toggle ──────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Countdown (fake urgency — remaining slots) ──────────────────
+  let slots = 47;
+  const el = document.getElementById('countdown');
+  setInterval(() => {
+    if (slots > 12 && Math.random() < 0.3) {
+      slots--;
+      if (el) el.textContent = slots;
+    }
+  }, 8000);
+
+  // ── Smooth scroll for all anchor links ─────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Buy button: replace with your qPay checkout URL ─────────────
+  // document.getElementById('buyBtn').href = 'https://your-qpay-checkout-url';
+</script>
+
+</body>
+</html>
